@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.cheng</groupId>
-		<artifactId>testeasy</artifactId>
+		<artifactId>easy</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>web</artifactId>
@@ -27,9 +27,7 @@
 		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-jaxrs</artifactId>
-<!-- 			<version>2.2.1.GA</version> -->
 		</dependency>
-
 
 	</dependencies>
 

@@ -12,15 +12,15 @@
 	</context-param>
 
 	<!-- 这句是关键 -->
-	<context-param>
-		<param-name>resteasy.resources</param-name>
-		<param-value>com.cheng.test.service.TestCase</param-value>
-	</context-param>
+<!-- 	<context-param> -->
+<!-- 		<param-name>resteasy.resources</param-name> -->
+<!-- 		<param-value>com.cheng.test.service.TestCase</param-value> -->
+<!-- 	</context-param> -->
 
 	<!-- this need same with resteasy servlet url-pattern -->
 	<context-param>
 		<param-name>resteasy.servlet.mapping.prefix</param-name>
-		<param-value>/rest</param-value>
+		<param-value>/services</param-value>
 	</context-param>
 
 	<listener>
@@ -38,7 +38,7 @@
 
 	<servlet-mapping>
 		<servlet-name>resteasy-servlet</servlet-name>
-		<url-pattern>/rest/*</url-pattern>
+		<url-pattern>/services/*</url-pattern>
 	</servlet-mapping>
 
 	<welcome-file-list>
