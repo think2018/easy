@@ -86,6 +86,7 @@
 			url : url,
 			success : function(msg) {
 				alert("success");
+				alert(msg);
 			},
 			error : function(msg) {
 				alert("error");

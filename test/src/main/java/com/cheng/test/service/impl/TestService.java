@@ -8,7 +8,7 @@ public class TestService implements ITestService {
 	public String testGet(String url) {
 		String result = "";
 		try {
-//			result = HTTPClientUtils.get(url);
+			result = HTTPClientUtils.get(url);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -18,7 +18,7 @@ public class TestService implements ITestService {
 	public String testPut(String url, String data) {
 		String result = "";
 		try {
-//			result = HTTPClientUtils.put(url, data);
+			result = HTTPClientUtils.put(url, data);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -28,7 +28,7 @@ public class TestService implements ITestService {
 	public String testPost(String url, String data) {
 		String result = "";
 		try {
-//			result = HTTPClientUtils.post(url, data);
+			result = HTTPClientUtils.post(url, data);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -38,7 +38,7 @@ public class TestService implements ITestService {
 	public String testDelete(String url) {
 		String result = "";
 		try {
-//			result = HTTPClientUtils.delete(url);
+			result = HTTPClientUtils.delete(url);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

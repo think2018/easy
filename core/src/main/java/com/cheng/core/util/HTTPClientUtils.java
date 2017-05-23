@@ -259,7 +259,7 @@ public class HTTPClientUtils {
 			line = HTTPClientUtils.post(url, object);
 			obj = JsonUtils.fromJson(line, o);
 		} catch (Exception e) {
-			logger.error("调用接口失败�?" + url + "******" + e);
+			logger.error("调用接口失败�?" + url + "******" + e);
 		}
 		return obj;
 	}
@@ -278,7 +278,7 @@ public class HTTPClientUtils {
 			line = HTTPClientUtils.put(url, object);
 			obj = JsonUtils.fromJson(line, o);
 		} catch (Exception e) {
-			logger.error("调用接口失败�?" + url + "******" + e);
+			logger.error("调用接口失败�?" + url + "******" + e);
 		}
 		return obj;
 	}
@@ -296,7 +296,7 @@ public class HTTPClientUtils {
 			line = HTTPClientUtils.get(url);
 			obj = JsonUtils.fromJson(line, o);
 		} catch (Exception e) {
-			logger.error("调用接口失败�?" + url + "******" + e);
+			logger.error("调用接口失败�?" + url + "******" + e);
 		}
 		return obj;
 	}
