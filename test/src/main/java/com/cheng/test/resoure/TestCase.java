@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cheng.test.constant.TestConstant;
 import com.cheng.test.dto.RequestData;
+import com.cheng.test.dto.ResponseData;
 import com.cheng.test.service.ITestService;
 import com.cheng.test.service.impl.TestService;
 
@@ -21,7 +22,7 @@ import com.cheng.test.service.impl.TestService;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class TestCase {
-
+	
 	String URL_HEAD = "http://circle-dev.yryz.com/lccf/services/"; // 测试环境
 	final String url = URL_HEAD + "comment/delete/-1";
 
@@ -50,7 +51,7 @@ public class TestCase {
 
 	@POST
 	@Path("")
-	public String requestTest(RequestData requestData) {
+	public ResponseData requestTest(RequestData requestData) {
 		System.out.println(requestData.toString());
 
 		List<String> circles = new ArrayList<String>();
@@ -70,10 +71,11 @@ public class TestCase {
 
 		System.out.println("urls3 size : " + urls3.size());
 
-		String result = "hi";
+		String result = "";
 		
 		testService = new TestService();
 
+		//TODO 1.POST参数  2.页面一点一点加载响应数据 3.@Autowired 4.RestEasy前缀不能写死services
 		for (String url : urls3) {
 			String[] urlAtype = StringUtils.split(url, ",");
 			String type = StringUtils.trim(urlAtype[1].replace("/", ""));
@@ -95,6 +97,9 @@ public class TestCase {
 				break;
 			}
 		}
-		return result;
+		
+		ResponseData responseData = new ResponseData();
+		responseData.setResult(result);
+		return responseData;
 	}
 }

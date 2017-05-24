@@ -85,12 +85,11 @@
 			data : JSON.stringify(data),
 			url : url,
 			success : function(msg) {
-				alert("success");
-				alert(msg);
+				alert(msg.msg);
+				alert(msg.result);
 			},
 			error : function(msg) {
 				alert("error");
-				alert(msg);
 			}
 		});
 
@@ -106,7 +105,7 @@
 	<input type="checkbox" name="environment"
 		value="http://localhost:8080/" checked="checked" />本地环境
 	<input type="checkbox" name="environment"
-		value="http://localhost:8888/" checked="checked" />开发环境
+		value="http://localhost:8888/" />开发环境
 	<input type="checkbox" name="environment"
 		value="http://circle-dev.yryz.com/" />测试环境
 	<input type="checkbox" name="environment"
@@ -114,36 +113,26 @@
 	<br>
 	<br> 什么项目？(圈子)
 	<br>
-	<input type="checkbox" name="circle" value="cyq" checked="checked" />创业圈
-	<input type="checkbox" name="circle" value="lccf" checked="checked" />理财圈
+	<input type="checkbox" name="circle" value="rest" checked="checked" />创业圈
+	<input type="checkbox" name="circle" value="lccf" />理财圈
 	<input type="checkbox" name="circle" value="yertx" />育儿圈
 	<input type="checkbox" name="circle" value="jkys" />健康圈
 	<input type="checkbox" name="circle" value="mcq" />萌宠圈
 	<br>
 	<br> 什么模块？
 	<br>
-	<input type="checkbox" name="modelName" value="comment"
-		checked="checked" />评论
-	<input type="checkbox" name="modelName" value="user" checked="checked" />用户
+	<input type="checkbox" name="modelName" value="test" checked="checked" />评论
+	<input type="checkbox" name="modelName" value="user" />用户
 	<br>
 	<br> 什么接口？
 	<br>
-	<input type="checkbox" name="interface" value="insert,post"
+	<input type="checkbox" name="interface" value="message,get"
 		checked="checked" />发布评论
-	<input type="checkbox" name="interface" value="insert,get"
-		checked="checked" />评论列表
+	<input type="checkbox" name="interface" value="list,post" />评论列表
 	<br>
 	<br>
 
 	<input type="button" onclick="test()" value="执行测试">
-	<br>
-	<br> 本地环境:"http://localhost:8080/lccf/services/comment/delete/-1";
-	<br>
-	<br>
-	测试环境:"http://circle-dev.yryz.com/lccf/services/comment/delete/-1";
-
-	<br>
-	<br>
 </body>
 
 </html>
