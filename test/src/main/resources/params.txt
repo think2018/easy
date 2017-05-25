@@ -1,0 +1,12 @@
+{
+    "columnCode": "100-1001",
+    "targetId": 4,
+    "targetUserId": "1x33fj5cj5",
+    "pId": 0,
+    "comment": "AAA",
+    "lastUpdateUserId": "guotlym3",
+    "rootId": 0,
+    "type": 0,
+    "contentUrl": "http://www-dev.yryz.com/cyq/idea/details/4",
+    "anchor": "0-4"
+}
