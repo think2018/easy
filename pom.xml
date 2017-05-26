@@ -104,6 +104,7 @@
 		<module>web</module>
 		<module>core</module>
 		<module>test</module>
+		<module>toolkit</module>
 	</modules>
 
 </project>
