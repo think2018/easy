@@ -101,10 +101,11 @@
 	</dependencyManagement>
 
 	<modules>
-		<module>web</module>
+		
 		<module>core</module>
 		<module>test</module>
 		<module>toolkit</module>
+		<module>client</module>
 	</modules>
 
 </project>
