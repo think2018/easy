@@ -1,0 +1,65 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<script> 
+function _add()
+{
+var name = "a|b||||||";
+alert(name.split("|"));
+
+// var a=prompt("请输入您的名字进行验证：");
+
+if(prompt("请输入您的名字进行验证：")) {
+alert("AAA");
+}
+
+/***
+if(a=="lewanzi")
+alert("你的输入正确！");
+else
+alert("你的输入不正确！");
+
+***/
+}
+
+
+function a(current){
+//alert(current);
+current.value = "hi";
+current.focus();
+current.select(); 
+}
+
+
+function show(event){
+
+
+var x = event.clientX;
+var y = event.clientY;
+var say = document.all("coords");
+say.innerHTML = "X:"+x+" Y:"+y;
+say.style.position = "absolute";
+say.style.left = x;
+say.style.top = y;
+
+document.getElementById("coherent_id_8").click();
+
+}
+
+alert("ffff");
+
+
+</script>
+<title>新建网页 1</title>
+</head>
+
+<body onmousemove="show(event)" style="background:red">
+<form>
+<input id="coherent_id_8" type="button" value="用户名" onclick="_add()">
+<input id="sku" type="text" value="" onblur="a(this)">
+</form>
+<p id="coords"></p>
+</body>
+
+</html>
