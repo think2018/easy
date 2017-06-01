@@ -94,7 +94,6 @@ public class SmsLSMUtils
 
 		client.addRequestInterceptor(new HttpRequestInterceptor()
 		{
-			@Override
 			public void process(HttpRequest request, HttpContext context)
 					throws HttpException, IOException
 			{
@@ -218,17 +217,14 @@ public class SmsLSMUtils
 
     private TrustManager[] getTrustingManager() {
         TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
-            @Override
             public java.security.cert.X509Certificate[] getAcceptedIssuers() {
                 return null;
             }
 
-            @Override
             public void checkClientTrusted(X509Certificate[] certs, String authType) {
                 // Do nothing
             }
 
-            @Override
             public void checkServerTrusted(X509Certificate[] certs, String authType) {
                 // Do nothing
             }

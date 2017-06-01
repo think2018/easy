@@ -29,8 +29,6 @@ import java.util.zip.GZIPInputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.cheng.exception.RopException;
-
 /**
  * Http连接工具集
  *

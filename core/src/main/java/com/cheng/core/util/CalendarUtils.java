@@ -9,8 +9,6 @@ import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.cheng.exception.RopException;
-
 /**
  * 
  * 日历工具类，主要做阴阳历互转，目前支持1936到2028之间的日期转换

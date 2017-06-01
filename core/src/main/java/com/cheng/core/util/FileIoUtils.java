@@ -22,8 +22,6 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.cheng.exception.ZuvException;
-
 /**
  * 文件操作工具集
  *
@@ -208,7 +206,6 @@ public class FileIoUtils
 	}
 
 	public static byte[] toBytes(InputStream instream)
-		throws ZuvException
 	{
 		ByteArrayOutputStream baos = null;
 		try
@@ -226,7 +223,6 @@ public class FileIoUtils
 		catch (IOException e)
 		{
 			logger.error("读写错误", e);
-			throw new ZuvException("读写错误", e);
 		}
 		finally
 		{
@@ -239,6 +235,9 @@ public class FileIoUtils
 				logger.error("close reader error", e);
 			}
 		}
+		
+		//ch
+		return null;
 	}
 	
 	//-------------------------------------------------------------------
