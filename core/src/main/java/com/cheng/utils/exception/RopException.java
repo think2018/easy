@@ -1,28 +1,8 @@
-/**
- * ID: RopException.java
- * Copyright (c) 2002-2013 Luther Inc.
- * http://xluther.com
- * All rights reserved.
- */
 package com.cheng.utils.exception;
 
 import java.io.PrintStream;
 import java.io.PrintWriter;
 
-/**
- * 异常类
- *
- * @author			Kama Luther
- * @version			0.1
- * @since           0.1
- * @.createdate     2013-7-19 下午02:30:31
- * @.modifydate     2013-7-19 下午02:30:31
- * <DT><B>修改历史记录</B>
- * <DD>
- * 
- * </DD>
- * </DT>
- */
 public class RopException extends RuntimeException
 {
 
