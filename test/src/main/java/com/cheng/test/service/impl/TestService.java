@@ -1,7 +1,7 @@
 package com.cheng.test.service.impl;
 
-import com.cheng.core.util.HTTPClientUtils;
 import com.cheng.test.service.ITestService;
+import com.cheng.utils.http.HTTPClientUtils;
 
 public class TestService implements ITestService {
 
