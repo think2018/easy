@@ -77,4 +77,14 @@ public class StringUtils
 		return pattern.matcher(str).matches();
 	}
 
+    public static String escapeParam(String param) {
+        return param.replaceAll("%", "%25")
+                .replaceAll("\\+", "%2B")
+                .replaceAll(" ", "%20")
+                .replaceAll("/", "%2F")
+                .replaceAll("\\?", "%3F")
+                .replaceAll("#", "%23")
+                .replaceAll("&", "%26")
+                .replaceAll("=", "%3D");
+    }
 }
