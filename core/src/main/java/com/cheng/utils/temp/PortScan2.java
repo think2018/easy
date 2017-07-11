@@ -12,11 +12,12 @@ public class PortScan2 extends Thread {
 	}
 
 	public static void main(String[] args) {
-		for (int n = 0; n < 10; n++) {
+//		for (int n = 0; n < 10; n++) {
 			for (int i = 0; i < 65535; i = i + 100) {
-				new PortScan2(new int[] { i + 1, i + 100, n }).start();
+//				new PortScan2(new int[] { i + 1, i + 100, n }).start();
+				new PortScan2(new int[] { i + 1, i + 100 }).start();
 			}
-		}
+//		}
 	}
 
 	@Override
@@ -25,14 +26,14 @@ public class PortScan2 extends Thread {
 			try {
 				// ss = new Socket("127.0.0.1", i);
 				// ss = new Socket("192.168.30.199", i);
-				ss = new Socket("192.168.30." + p[2], i);
+//				ss = new Socket("192.168.30." + p[2], i);
+				ss = new Socket("120.24.45.31", i);
 				// System.out.println(ss.isConnected());
 				String name = ss.getInetAddress().getCanonicalHostName();
 				System.out.println("HostName : " + name + ", 192.168.30." + p[2] + ", 扫描到端口： " + i);
 
 			} catch (Exception e) {
-				// System.out.println("Msg : (" + count++ + ")" + "post : (" + i
-				// + ")" + e.getMessage());
+				 System.out.println("PORT : (" + i + ")" + e.getMessage());
 			}
 		}
 	}

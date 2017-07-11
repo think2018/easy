@@ -21,14 +21,17 @@ public class PortScan extends Thread {
 	public void run() {
 		for (int i = p[0]; i < p[1]; i++) {
 			try {
-				// ss = new Socket("127.0.0.1", i);
-				// ss = new Socket("192.168.30.199", i);
-				ss = new Socket("192.168.30.199", i);
-				System.out.println(ss.isConnected());
+//				 ss = new Socket("127.0.0.1", i);
+//				 ss = new Socket("192.168.30.96", i);
+//				ss = new Socket("61.183.91.38", i);
+				
+//				ss = new Socket("192.168.30.199", i);
+				ss = new Socket("120.24.45.31", i);
+//				System.out.println(ss.isConnected());
 				System.out.println("扫描到端口： " + i);
 
 			} catch (Exception e) {
-				System.out.println("Msg : (" + count++ + ")" + "PORT : (" + i + ")" + e.getMessage());
+//				System.out.println("Msg : (" + count++ + ")" + "PORT : (" + i + ")" + e.getMessage());
 			}
 		}
 	}
