@@ -27,7 +27,8 @@ public class PortScan2 extends Thread {
 				// ss = new Socket("127.0.0.1", i);
 				// ss = new Socket("192.168.30.199", i);
 //				ss = new Socket("192.168.30." + p[2], i);
-				ss = new Socket("120.24.45.31", i);
+//				ss = new Socket("120.24.45.31", i);
+				ss = new Socket("66.183.91.38", i);
 				// System.out.println(ss.isConnected());
 				String name = ss.getInetAddress().getCanonicalHostName();
 				System.out.println("HostName : " + name + ", 192.168.30." + p[2] + ", 扫描到端口： " + i);

@@ -1,4 +1,119 @@
-//通用Form提交表单
+
+//siblings() 获得匹配集合中每个元素的同胞，通过选择器进行筛选是可选的。
+
+// 给所有TR添加click事件
+$(function() {
+	$("table tr").click(function() {
+		if ($(this).has("td").size() > 0) {
+			// 添加背景色
+			$(this).addClass('td_ground');
+			// 选中行增加已选中属性
+			$(this).children("td").find("input :eq(0)").attr("checked", true);
+			// 根据选中行判断此条数据对应的功能开放
+			check($(this).children("td").find("input :eq(1)"));
+			// 移除其它同胞元素的背景色
+			$(this).siblings().removeClass("td_ground");
+		}
+	});
+});
+
+//全选/全不选
+function checkAll(current) {
+	var checked = current.checked;
+
+	$.each($("input[name=ids]"), function(i) {
+		$(this).attr("checked", checked);
+	});
+}
+
+// 上移
+function up() {
+	var f = $("input[name='ids']").is(':checked');
+	if (f) {
+		$.each($("table .td_ground"), function() {
+			var obj = $(this);
+			var up = obj.prev();
+			if ($(up).has("td").size() == 0) {
+				alert("顶级元素不能上移");
+				return;
+			}
+			$(obj).after(up);
+			resetSort();
+		});
+	} else {
+		alert("请选中一行数据");
+	}
+}
+
+// 下移
+function down() {
+	var f = $("input[name='ids']").is(':checked');
+
+	if (f) {
+		$.each($("table .td_ground"), function() {
+			var obj = $(this);
+			var down = obj.next();
+
+			if ($(down).has("td").size() == 0) {
+				alert("最尾部了");
+				return;
+			}
+			$(down).after(obj);
+			resetSort();
+		});
+	} else {
+		alert("请选中一行数据");
+	}
+}
+
+// 重新排序
+function resetSort() {
+	$("table tbody tr").each(function(index, obj) {
+		$($(obj).find('td :eq(1)')).text(index + 1);
+	})
+}
+
+// 根据选中行判断此条数据对应的功能开放
+function check(gg) {
+
+	var shelveFlag = $(gg).val();
+
+	if (shelveFlag == 0) {
+		$("#goup").attr("disabled", true);
+		$("#godown").attr("disabled", false);
+	} else {
+		$("#goup").attr("disabled", false);
+		$("#godown").attr("disabled", true);
+	}
+}
+
+// 弹出框
+function dialog() {
+	// 调父窗口请用 parent 或 top，如果是多层iframe，需要调用多个parent
+	var html = "<div style='padding:10px;'>产品分类： <input id=\"category\" name=\"category\" type=\"text\" value=\"\" /></div>";
+	var submit = function(v, h, f) {
+		if (f.category == '') {
+			// f.some 或 h.find('#some').val() 等于 top.$('#some').val()
+			top.$.jBox.tip("请输入点什么。", 'error', {
+				focusId : "category"
+			}); // 关闭设置 some 为焦点
+			return false;
+		}
+
+		saveCategory(f.category);
+
+		return true;
+	};
+
+	top.$.jBox(html, {
+		title : "新增产品分类",
+		submit : submit
+	});
+}
+
+// *********数据交互************************************
+// 查询,新增
+// 通用Form提交表单
 $(function() {
 	$("#inputForm").validate({
 		// 验证部分
@@ -24,57 +139,7 @@ $(function() {
 	});
 });
 
-// 联动级联加载列表
-function getCity(destination) {
-	$("#place").empty();// 清空下拉框
-	if (null == destination || destination == "") {
-		// 添加默认值
-		var option = $("<option></option>").text("所有").val("");
-		$("#place").append(option);
-		return;
-	}
-
-	$.ajax({
-		type : "get",
-		url : "${ctx}/destination/listForPlaceJson",
-		dataType : "JSON",
-		data : {
-			"parentId" : destination
-		}, // 参数值
-		success : function(list) {
-			// 遍历
-			$.each(list, function(i, p) {
-				var option = $("<option></option>").text(p.name).val(p.id);
-				$("#place").append(option);
-			});
-		}
-	})
-}
-
-// 新增分类-弹出框
-function save() {
-	// 调父窗口请用 parent 或 top，如果是多层iframe，需要调用多个parent
-	var html = "<div style='padding:10px;'>产品分类： <input id=\"category\" name=\"category\" type=\"text\" value=\"\" /></div>";
-	var submit = function(v, h, f) {
-		if (f.category == '') {
-			// f.some 或 h.find('#some').val() 等于 top.$('#some').val()
-			top.$.jBox.tip("请输入点什么。", 'error', {
-				focusId : "category"
-			}); // 关闭设置 some 为焦点
-			return false;
-		}
-
-		saveCategory(f.category);
-
-		return true;
-	};
-
-	top.$.jBox(html, {
-		title : "新增产品分类",
-		submit : submit
-	});
-}
-
+// 新增
 function saveCategory(name) {
 
 	var data = {
@@ -97,8 +162,10 @@ function saveCategory(name) {
 	}
 }
 
-function updateProduct(shelveFlag) {
+// 删除
 
+// 更新
+function update(shelveFlag) {
 	var f = $("input[name='ids']").is(':checked');
 	if (!f) {
 		alert("请先选择记录！");
@@ -112,7 +179,7 @@ function updateProduct(shelveFlag) {
 		shelveFlag : shelveFlag
 	};
 
-	var text = "确定要上架？";
+	var text = "确定要上/下架？";
 
 	if (confirm(text)) {
 		$.ajax({
@@ -121,7 +188,9 @@ function updateProduct(shelveFlag) {
 			data : data,
 			success : function(result) {
 				if (result.msg == "success") {
+					// 刷新当前页
 					window.location.href = "${ctx}/product/list/";
+					// 刷新当前Form
 				}
 			}
 		});
@@ -285,74 +354,6 @@ function editProduct(type) {
 	});
 }
 
-function up() {
-	var f = $("input[name='ids']").is(':checked');
-	if (f) {
-		$.each($("table .td_ground"), function() {
-			var obj = $(this);
-			var up = obj.prev();
-			if ($(up).has("td").size() == 0) {
-				alert("顶级元素不能上移");
-				return;
-			}
-			$(obj).after(up);
-			resetSort();
-		});
-	} else {
-		alert("请选中一行数据");
-	}
-}
-
-function down() {
-	var f = $("input[name='ids']").is(':checked');
-
-	if (f) {
-		$.each($("table .td_ground"), function() {
-			var obj = $(this);
-			var down = obj.next();
-
-			if ($(down).has("td").size() == 0) {
-				alert("最尾部了");
-				return;
-			}
-			$(down).after(obj);
-			resetSort();
-		});
-	} else {
-		alert("请选中一行数据");
-	}
-}
-
-$(function() {
-	$("table tr").click(function() {
-		if ($(this).has("td").size() > 0) {
-			$(this).addClass('td_ground');
-			$(this).children("td").find("input :eq(0)").attr("checked", true);
-			check($(this).children("td").find("input :eq(1)"));
-			$(this).siblings().removeClass("td_ground");
-		}
-	});
-});
-
-function check(gg) {
-
-	var shelveFlag = $(gg).val();
-
-	if (shelveFlag == 0) {
-		$("#goup").attr("disabled", true);
-		$("#godown").attr("disabled", false);
-	} else {
-		$("#goup").attr("disabled", false);
-		$("#godown").attr("disabled", true);
-	}
-}
-
-function resetSort() {
-	$("table tbody tr").each(function(index, obj) {
-		$($(obj).find('td :eq(1)')).text(index + 1);
-	})
-}
-
 function release() {
 	var releaseFlag = confirm("确认发布吗？");
 	if (releaseFlag) {
@@ -376,33 +377,6 @@ function release() {
 		window.location.href = "${ctx}/product/release?" + str;
 		console.info(str);
 	}
-}
-
-function getCity(destination) {// 联动加载地点列表
-	$("#place").empty();// 清空下拉框
-
-	if (null == destination || destination == "") {
-		var option = $("<option></option>").text("所有").val("");
-		$("#place").append(option);
-		return;
-	}
-
-	$.ajax({
-		type : "get",
-		url : "${ctx}/destination/listForPlaceJson",
-		dataType : "JSON",
-		data : {
-			"parentId" : destination
-		}, // 参数值
-		success : function(list) {
-			// 遍历
-			$.each(list, function(i, p) {
-				var option = $("<option></option>").text(p.name).val(p.id);
-				$("#place").append(option);
-			});
-		}
-	})
-
 }
 
 function formReset() {
@@ -456,3 +430,29 @@ function formReset() {
 	$("#name").val("");
 };
 
+// 联动级联加载列表
+function getCity(destination) {
+	$("#place").empty();// 清空下拉框
+	if (null == destination || destination == "") {
+		// 添加默认值
+		var option = $("<option></option>").text("所有").val("");
+		$("#place").append(option);
+		return;
+	}
+
+	$.ajax({
+		type : "get",
+		url : "${ctx}/destination/listForPlaceJson",
+		dataType : "JSON",
+		data : {
+			"parentId" : destination
+		}, // 参数值
+		success : function(list) {
+			// 遍历
+			$.each(list, function(i, p) {
+				var option = $("<option></option>").text(p.name).val(p.id);
+				$("#place").append(option);
+			});
+		}
+	})
+}
