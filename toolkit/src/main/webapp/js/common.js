@@ -111,6 +111,14 @@ function dialog() {
 	});
 }
 
+//分页的
+function page(n,s){
+	$("#pageNo").val(n);
+	$("#pageSize").val(s);
+	$("#searchForm").submit();
+	return false;
+}
+
 // *********数据交互************************************
 // 查询,新增
 // 通用Form提交表单

@@ -3,12 +3,12 @@
 <%@ include file="/WEB-INF/common/taglib.jsp"%>
 <%@ include file="/WEB-INF/common/head.jsp"%>
 
-<script type="text/javascript" src="${ctx}/js/common.js"></script>
+<script type="text/javascript" src="/js/core.js"></script>
 <link type="text/css" rel="stylesheet" href="core.css"></link>
 
 <html>
 <head>
-<title>title</title>
+<title>###title###</title>
 </head>
 <body>
 	<%@ include file="/WEB-INF/common/tab.jsp" %>
