@@ -11,7 +11,11 @@
 <title>###title###</title>
 </head>
 <body>
-	<%@ include file="/WEB-INF/common/tab.jsp" %>
+	<ul class="nav nav-tabs">
+	<li class="active"><a href="${ctx}/uri/a">标签A</a></li>
+	<li class=""><a href="${ctx}/uri/b">标签B</a></li>
+</ul>
+
 	<%@ include file="/WEB-INF/common/search.jsp" %>
 	<%@ include file="/WEB-INF/common/func.jsp" %>
 	<%@ include file="/WEB-INF/common/table.jsp" %>
